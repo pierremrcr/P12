@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">	
+</head>
+
+
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+
+            <ul class="navbar-nav mr-auto">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Mon panier</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/signup}">Mon compte</a>
+                    </li>
+                                       
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Contactez nous</a>
+                    </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+
+</header>
+
+ 
+ <body>
+ 
+    <div class="container mt-5">
+   
+    <div class="row">
+        <div class="col-12">
+            <h1>Bienvenue sur le Comptoir du Miel</h1>
+        </div>
+    </div>
+   
+    <div class="row">
+       
+        <div class="col-md-8" style="font-family: 'Poppins', sans-serif;">
+            <p class="text-justify">Fondée en 1985, Le Comptoir du Miel est le fruit d'une passion familiale pour l'apiculture 
+            et le respect de la nature. 
+            Au cœur de La Charente-Maritime, notre entreprise a commencé avec seulement quelques ruches, 
+            nourries par une fascination profonde pour le monde complexe des abeilles et leur importance cruciale dans notre écosystème.
+            Au fil des ans, grâce à un engagement inébranlable envers des méthodes durables et éthiques, 
+            Le Comptoir du Miel a grandi pour devenir l'un des fournisseurs de miel les plus respectés et aimés dans le pays. 
+            Nous prenons un soin particulier à chaque étape du processus, de la sélection des emplacements des ruches pour garantir 
+            la meilleure qualité de pollen et de nectar, à l'extraction délicate qui préserve la pureté et les propriétés bénéfiques de notre miel.
+            Notre gamme de produits s'est élargie au fil des ans pour inclure une variété de miels monofloraux, chacun reflétant les caractéristiques 
+            uniques des fleurs dont ils sont issus. De la douceur délicate de notre miel de lavande à la robustesse de notre miel de châtaignier, 
+            nous sommes fiers d'offrir quelque chose pour chaque palais, tout en soutenant la biodiversité et les pratiques agricoles durables.
+            Le Comptoir du Miel reste fidèle à ses racines, mettant l'accent sur la qualité, la transparence et la responsabilité. 
+            Nous invitons nos clients à rejoindre notre voyage, à découvrir l'histoire fascinante derrière chaque pot de miel, et à partager notre amour 
+            pour ce trésor naturel. Ensemble, nous célébrons le travail acharné des abeilles et la beauté de la nature, tout en nous engageant 
+            à laisser un monde plus doux et plus sain pour les générations futures. 
+            </p>
+        </div>
+        
+     <div class="col-md-4">
+            <img src="/img/miel/logo.png" alt="logo" class="img-fluid">
+      </div>
+      
+     </div>
+        
+ 
+ <section class="best-sellers mb-5">
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <h2>Nos meilleurs ventes</h2>
+            </div>
+        
+        <div class="col-md-4">
+                <div class="card">
+                    <img src="/img/miel/img_miel.jpg" class="card-img-top" alt="Miel 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Miel de Lavande</h5>
+                        <p class="card-text">Un miel doux et parfumé, parfait pour sucrer vos infusions.</p>
+                        <a href="#" class="btn btn-warning mb-2 mr-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/img/miel/img_miel.jpg" class="card-img-top" alt="Miel 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Miel de Châtaignier</h5>
+                        <p class="card-text">Un miel corsé et riche en minéraux, idéal pour accompagner vos petits déjeuners.</p>
+                        <a href="#" class="btn btn-warning mb-2 mr-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/img/miel/img_miel.jpg" class="card-img-top" alt="Miel 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Miel d'Acacia</h5>
+                        <p class="card-text">Un miel clair et doux, parfait pour adoucir vos recettes.</p>
+                        <a href="#" class="btn btn-warning mb-2 mr-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        
+</section>
+        
+ </div>
+  
+<footer class="text-white py-3 bg-dark">
+  <div class="container">
+    <div class="d-flex justify-content-end">
+      <div class="text-end">
+        <p class="mb-1" style="font-size: 1rem;">Le Comptoir du Miel</p>
+        <p class="mb-1" style="font-size: 0.8rem;">15 rue Amelot</p>
+        <p class="mb-1" style="font-size: 0.8rem;">17000 La Rochelle</p>
+        <p class="mb-1" style="font-size: 0.8rem;">06 78 05 93 84</p>
+        <p class="mb-0" style="font-size: 0.8rem;">- Tous droits réservés -</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+
+</html>
