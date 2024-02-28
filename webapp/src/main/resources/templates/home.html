@@ -6,44 +6,13 @@
     <title>Accueil</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">	
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 
 <header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor02">
-
-            <ul class="navbar-nav mr-auto">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Mon panier</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/signup}">Mon compte</a>
-                    </li>
-                                       
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Contactez nous</a>
-                    </li>
-
-            </ul>
-        </div>
-
-    </nav>
-
+<div th:replace="fragments/menu"></div>    
 
 </header>
 
@@ -130,21 +99,7 @@
         
  </div>
   
-<footer class="text-white py-3 bg-dark">
-  <div class="container">
-    <div class="d-flex justify-content-end">
-      <div class="text-end">
-        <p class="mb-1" style="font-size: 1rem;">Le Comptoir du Miel</p>
-        <p class="mb-1" style="font-size: 0.8rem;">15 rue Amelot</p>
-        <p class="mb-1" style="font-size: 0.8rem;">17000 La Rochelle</p>
-        <p class="mb-1" style="font-size: 0.8rem;">06 78 05 93 84</p>
-        <p class="mb-0" style="font-size: 0.8rem;">- Tous droits réservés -</p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
+<div th:replace="fragments/footer"></div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

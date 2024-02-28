@@ -16,16 +16,6 @@ CREATE TABLE Utilisateur (
     FOREIGN KEY (adresse_id) REFERENCES Adresse(id)
 );
 
-CREATE TABLE Producteur (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    nom_entreprise VARCHAR(255),
-    telephone VARCHAR(20),
-    email VARCHAR(255),
-    adresse_id INT,
-    FOREIGN KEY (adresse_id) REFERENCES Adresse(id)
-);
 
 CREATE TABLE Miel (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,9 +23,7 @@ CREATE TABLE Miel (
     description VARCHAR(3000),
     type_miel VARCHAR(50),
     prix FLOAT,
-    stock INT,
-    producteur_id INT,
-    FOREIGN KEY (producteur_id) REFERENCES Producteur(id)
+    stock INT  
 );
 
 CREATE TABLE Commande (
