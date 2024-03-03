@@ -49,12 +49,6 @@ public class LoginController {
 	        return new ModelAndView("home");
 	    }
 	    
-	
-//	    
-//	    @GetMapping("/login")
-//	    public String login() {
-//	        return "login";
-//	    }
 	    
 	    @PostMapping("/login")
 	    public String login(@RequestParam("adresseMail") String email, @RequestParam("motDePasse") String password, HttpSession session) {

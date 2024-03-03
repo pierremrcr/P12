@@ -1,0 +1,52 @@
+
+{
+  "nom": "Doe",
+  "prenom": "John",
+  "adresseMail": "john.doe@example.com",
+  "motDePasse": "password123",
+  "telephone": "0123456789",
+  "role": "CLIENT",
+  "adresse": {
+    "rue": "123 rue de la Paix",
+    "ville": "Paris",
+    "codePostal": "75000",
+    "pays": "France"
+  }
+}
+
+
+{
+  "dateCommande": "2024-03-03T14:00:00Z",
+  "statut": "EN_ATTENTE",
+  "utilisateur": {
+    "id": 1
+  },
+  "detailsCommande": [
+    {
+      "miel": {
+        "id": 1
+      },
+      "quantite": 2
+    },
+    {
+      "miel": {
+        "id": 2
+      },
+      "quantite": 3
+    }
+  ]
+}
+
+
+{
+  "nom": "Miel de Lavande",
+  "description": "Miel de lavande récolté dans les champs de Provence.",
+  "typeMiel": "MIEL_DE_LAVANDE",
+  "prix": 15.50,
+  "stock": 120
+}
+
+
+
+
+
