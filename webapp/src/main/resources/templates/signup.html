@@ -9,52 +9,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor02">
-
-            <ul class="navbar-nav mr-auto">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Nos Miels</a>
-                    </li>
-               
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Mon panier</a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Mon compte</a>
-                    </li>
-                                       
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Contactez nous</a>
-                    </li>
-
-            </ul>
-        </div>
-
-
-    </nav>
-
-
+ <header>
+<div th:replace="fragments/menu"></div>    
 </header>
 
 
 <body>
 
     <div class="container mt-5">
+    
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -64,14 +28,15 @@
                     <div class="card-body">
                         <form action="#" th:action="@{/login}" method="post">
                             <div class="form-group">
-                                <label for="login">Identifiant :</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Adresse Mail" required>
+                                <label for="adresseMail">Identifiant Test:</label>
+                                <input type="text" class="form-control" id="adresseMail" name="adresseMail" placeholder="Adresse Mail" required>
                             </div>
                             <div class="form-group">
-                                <label for="password">Mot de passe :</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de Passe" required>
+                                <label for="motDePasse">Mot de passe :</label>
+                                <input type="motDePasse" class="form-control" id="motDePasse" name="motDePasse" placeholder="Mot de Passe" required>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-block text-white">Connexion</button>
+                            
+                            <button type="submit" name="signup" id="signup" value="Submit" class="btn btn-warning btn-block text-white">Connexion</button>
                         </form>
                     </div>
                 </div>
@@ -173,17 +138,14 @@
 
                              <button type="submit" name="signup" id="signup" class="btn btn-warning btn-block text-white" value="Submit">Créer un Compte</button> 
                         </form>
-                            
-            				
-         
-       				
-            				
-                           
+                                        				                				                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<div th:replace="fragments/footer"></div>
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

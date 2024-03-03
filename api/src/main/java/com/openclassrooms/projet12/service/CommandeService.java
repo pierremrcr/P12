@@ -4,36 +4,60 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.openclassrooms.projet12.model.Commande;
+import com.openclassrooms.projet12.model.Detail_Commande;
 import com.openclassrooms.projet12.repository.CommandeRepository;
 
-import lombok.Data;
-
-@Data
 @Service
 public class CommandeService {
-	
-		@Autowired
-		private CommandeRepository commandeRepository;
-		
-		public Optional<Commande> getCommande(final Long id) {
-	        return commandeRepository.findById(id);
-	    }
 
-	    public Iterable<Commande> getAllCommande() {
-	        return commandeRepository.findAll();
-	    }
+    private final CommandeRepository commandeRepository;
 
-	    public void deleteCommande(final Long id) {
-	    	commandeRepository.deleteById(id);
-	    }
+    @Autowired
+    public CommandeService(CommandeRepository commandeRepository) {
+        this.commandeRepository = commandeRepository;
+    }
 
-	    public Commande saveCommande(Commande commande) {
-	    	Commande savedCommande = commandeRepository.save(commande);
-	        return savedCommande;
-	    }
+    
+    @Transactional
+    public Commande saveCommande(Commande commande) {
+        for (Detail_Commande detail : commande.getDetailsCommande()) {
+            detail.setCommande(commande);
+        }
+        return commandeRepository.save(commande);
+    }
 
-	}
+    
+    public Iterable<Commande> findAllCommandes() {
+        return commandeRepository.findAll();
+    }
 
+    
+    public Optional<Commande> findCommandeById(Long id) {
+        return commandeRepository.findById(id);
+    }
 
+    
+    @Transactional
+    public Commande updateCommande(Long id, Commande commandeDetails) {
+        Commande commande = commandeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Commande not found with id " + id));
+        
+        commande.setDateCommande(commandeDetails.getDateCommande());
+        commande.setStatut(commandeDetails.getStatut());
+        commande.setUtilisateur(commandeDetails.getUtilisateur());
+        commande.setDetailsCommande(commandeDetails.getDetailsCommande());
+        
+        return commandeRepository.save(commande);
+    }
+
+    
+    @Transactional
+    public void deleteCommandeById(Long id) {
+        Commande commande = commandeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Commande not found with id " + id));
+        commandeRepository.delete(commande);
+    }
+}

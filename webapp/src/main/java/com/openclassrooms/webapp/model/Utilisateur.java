@@ -9,6 +9,11 @@ public class Utilisateur {
 	private String motDePasse;
 	private String telephone;
 	
+	
+
+	public Utilisateur() {	
+	}
+	
 	public Long getId() {
 		return id;
 	}

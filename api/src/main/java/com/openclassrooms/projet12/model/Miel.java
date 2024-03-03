@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.openclassrooms.projet12.model.enums.TypeMiel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,12 +31,13 @@ public class Miel {
 	private String description;
 	
 	@Column(name="type_miel")
+	@Enumerated(EnumType.STRING)
 	private TypeMiel typeMiel;
 	
 	private double prix;
 	private int stock;
 	
-	@OneToMany(mappedBy = "miel")
+	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Detail_Commande> detailsCommande;
 	
 	

@@ -1,5 +1,6 @@
 package com.openclassrooms.projet12.model;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +21,7 @@ public class Detail_Commande {
     @JoinColumn(name = "miel_id", referencedColumnName = "id")
     private Miel miel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "commande_id", referencedColumnName = "id")
     private Commande commande;
 

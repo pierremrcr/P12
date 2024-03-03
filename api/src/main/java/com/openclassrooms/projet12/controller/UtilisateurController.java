@@ -4,13 +4,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.openclassrooms.projet12.model.Adresse;
 import com.openclassrooms.projet12.model.Utilisateur;
@@ -37,10 +37,19 @@ public class UtilisateurController {
 		}
 	}
 	
-	@GetMapping("/login")
-    public Utilisateur getUtilisateurByEmail(@PathVariable String email) {
-        return utilisateurService.getUtilisateurByEmail(email);
-    }
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+		try {
+			Utilisateur utilisateur = utilisateurService.authenticate(loginRequest.getAdresseMail(), loginRequest.getMotDePasse());
+			if (utilisateur != null && verifyPassword(loginRequest.getMotDePasse(), utilisateur.getMotDePasse()))  {
+				return ResponseEntity.ok(utilisateur);
+			} else { 
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Échec de l'authentification");
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur serveur est survenue");
+		}
+	}
 
 	@PostMapping("/utilisateur")
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
@@ -84,4 +93,47 @@ public class UtilisateurController {
 			return null;
 		}
 	}
+	
+	@DeleteMapping("/utilisateur/{id}")
+	public void deleteUtilisateur(@PathVariable("id") Long id) {
+		utilisateurService.deleteUtilisateur(id);
+	}
+	
+	public boolean verifyPassword(String motDePasseRequest, String motDePasse) {
+	    if (motDePasseRequest.equals(motDePasse)) {
+	    	return true;
+	    }
+	    return false;
+	}
+	
+	  public static class LoginRequest {
+		    private String adresseMail; 
+		    private String motDePasse;
+
+	        
+	        public LoginRequest() {
+	        }
+
+
+			public String getAdresseMail() {
+				return adresseMail;
+			}
+
+
+			public void setAdresseMail(String adresseMail) {
+				this.adresseMail = adresseMail;
+			}
+
+
+			public String getMotDePasse() {
+				return motDePasse;
+			}
+
+
+			public void setMotDePasse(String motDePasse) {
+				this.motDePasse = motDePasse;
+			}
+	        
+	       
+	    }
 }

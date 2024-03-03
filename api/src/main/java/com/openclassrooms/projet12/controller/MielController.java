@@ -2,6 +2,9 @@ package com.openclassrooms.projet12.controller;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +37,9 @@ public class MielController {
 	}
 
 	@PostMapping("/miel")
-	public Miel createMiel(@RequestBody Miel miel) {
-		return mielService.saveMiel(miel);
+	public ResponseEntity<Miel> createMiel(@RequestBody Miel miel) {
+	    Miel savedMiel = mielService.saveMiel(miel);
+	    return new ResponseEntity<>(savedMiel, HttpStatus.CREATED);
 	}
 
 	public Miel updateMiel(@PathVariable("id") final Long id, @RequestBody Miel miel) {
@@ -75,6 +79,11 @@ public class MielController {
 			return null;
 		}
 	}
+	
+	@DeleteMapping("/miel/{id}")
+    public void deleteMiel(@PathVariable("id") Long id) {
+        mielService.deleteMielById(id);
+    }
 }
 
 

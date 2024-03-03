@@ -4,9 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.openclassrooms.projet12.model.enums.Role;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,14 +41,19 @@ public class Utilisateur {
 	
 	private String telephone;
 	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
 	@OneToOne(cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "adresse_id", referencedColumnName = "id")
 	private Adresse adresse;
 	
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Commande> commandes;
 	
 	
+	public Utilisateur() {	
+	}
 
 	public Utilisateur(String adresseMail, String motDePasse) {
 		super();
@@ -102,5 +111,31 @@ public class Utilisateur {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
+	}
+	
+	
 	
 }

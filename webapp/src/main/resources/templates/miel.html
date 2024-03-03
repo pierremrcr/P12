@@ -7,42 +7,9 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">	 
 </head>
 
+
 <header>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor02">
-
-            <ul class="navbar-nav mr-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Mon panier</a>
-                    </li>
-                   
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/signup}">Mon compte</a>
-                    </li>
-                                  
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Contactez nous</a>
-                    </li>
-
-            </ul>
-        </div>
-
-
-    </nav>
-
-
+<div th:replace="fragments/menu"></div>    
 </header>
 
 <body>
@@ -72,12 +39,18 @@
                 
                  <div class="text-right mb-3">
                     <button class="btn btn-warning">Ajouter au panier</button>
-                </div>      
+                </div>
+
             </div>
         </div>
-    </div>
 
+    
+    </div>
+    
+   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    
+     <div th:replace="fragments/footer"></div>
 </body>
 </html>
 

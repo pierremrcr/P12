@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.openclassrooms.projet12.model.enums.StatutCommande;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,8 +39,12 @@ public class Commande {
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
     
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Detail_Commande> detailsCommande;
+     
+
+	public Commande() {
+	}
 
 	public Long getId() {
 		return id;

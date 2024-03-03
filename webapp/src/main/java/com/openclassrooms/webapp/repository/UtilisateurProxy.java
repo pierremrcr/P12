@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.openclassrooms.webapp.CustomProperties;
@@ -22,18 +25,50 @@ public class UtilisateurProxy {
 
 
 	public Utilisateur login(String email, String password) {
+	    String baseApiUrl = props.getApiUrl();
+	    String loginUrl = baseApiUrl + "/login";
 
-		String baseApiUrl = props.getApiUrl();
-		String loginUrl = baseApiUrl + "/login";
-		
-		RestTemplate restTemplate = new RestTemplate();
+	    RestTemplate restTemplate = new RestTemplate();
 
-		LoginRequest loginRequest = new LoginRequest(email, password);
-        ResponseEntity<Utilisateur> response = restTemplate.postForEntity(loginUrl, loginRequest, Utilisateur.class);
-        
-        return response.getStatusCode() == HttpStatus.OK ? response.getBody() : null;
-		
+	    LoginRequest loginRequest = new LoginRequest(email, password);
+	    HttpEntity<LoginRequest> request = new HttpEntity<>(loginRequest);
+
+	    try {
+	        ResponseEntity<Utilisateur> response = restTemplate.exchange(
+	                loginUrl,
+	                HttpMethod.POST,
+	                request,
+	                Utilisateur.class);
+
+	        if (response.getStatusCode().is2xxSuccessful()) {
+	            return response.getBody();
+	        } else {
+	            // Vous pouvez gérer ici d'autres cas de succès inattendus si nécessaire
+	            return null;
+	        }
+	    } catch (HttpClientErrorException e) {
+	        // Gestion des erreurs client (4xx), par exemple, 401 Unauthorized
+	        if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+	            System.err.println("Échec de l'authentification : Accès refusé");
+	        } else {
+	            System.err.println("Erreur client : " + e.getStatusCode());
+	        }
+	        return null;
+	    } catch (HttpServerErrorException e) {
+	        // Gestion des erreurs serveur (5xx)
+	        System.err.println("Erreur serveur : " + e.getStatusCode());
+	        return null;
+	    } catch (RestClientException e) {
+	        // Gestion des autres erreurs dans les requêtes REST
+	        System.err.println("Erreur lors de la communication avec l'API : " + e.getMessage());
+	        return null;
+	    }
 	}
+
+
+        
+		
+	
 
 	public Utilisateur createUtilisateur(Utilisateur u) {
 		String baseApiUrl = props.getApiUrl();
@@ -64,16 +99,45 @@ public class UtilisateurProxy {
 
 		return response.getBody();
 	}
+	
 
 	public static class LoginRequest {
-		private String email;
-		private String password;
+		
+	    private String adresseMail; 
+	    private String motDePasse;
 
+        
+        public LoginRequest() {
+        }
+        
 
-		public LoginRequest(String email, String password) {
-			this.email = email;
-			this.password = password;
+		public LoginRequest(String adresseMail, String motDePasse) {
+			this.adresseMail = adresseMail;
+			this.motDePasse = motDePasse;
 		}
+
+
+
+
+		public String getAdresseMail() {
+			return adresseMail;
+		}
+
+
+		public void setAdresseMail(String adresseMail) {
+			this.adresseMail = adresseMail;
+		}
+
+
+		public String getMotDePasse() {
+			return motDePasse;
+		}
+
+
+		public void setMotDePasse(String motDePasse) {
+			this.motDePasse = motDePasse;
+		}
+		
 
 
 	}

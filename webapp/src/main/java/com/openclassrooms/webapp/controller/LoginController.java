@@ -50,20 +50,20 @@ public class LoginController {
 	    }
 	    
 	
-	    
-	    @GetMapping("/login")
-	    public String login() {
-	        return "login";
-	    }
+//	    
+//	    @GetMapping("/login")
+//	    public String login() {
+//	        return "login";
+//	    }
 	    
 	    @PostMapping("/login")
-	    public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
+	    public String login(@RequestParam("adresseMail") String email, @RequestParam("motDePasse") String password, HttpSession session) {
 	        Utilisateur utilisateur = utilisateurService.login(email, password);
 	        if (utilisateur != null) {
 	            session.setAttribute("user", utilisateur);
 	            return "redirect:/home";
 	        } else {
-	            return "redirect:/login?error";
+	            return "redirect:/signup";
 	        }
 	    }
 	    
