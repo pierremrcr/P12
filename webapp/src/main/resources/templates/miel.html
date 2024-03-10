@@ -37,9 +37,13 @@
                     <p class="text-warning font-weight-bold" th:text="${miel.prix + ' €'}"></p>
                 </div>  
                 
+                <th:block th:if="${session.user != null}">
+
                  <div class="text-right mb-3">
                     <button class="btn btn-warning">Ajouter au panier</button>
                 </div>
+
+                </th:block>
 
             </div>
         </div>

@@ -15,6 +15,7 @@ import java.util.Optional;
 @RequestMapping("/commandes")
 public class CommandeController {
 
+	@Autowired
     private final CommandeService commandeService;
 
     @Autowired

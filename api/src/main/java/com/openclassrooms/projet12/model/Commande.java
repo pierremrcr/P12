@@ -40,7 +40,7 @@ public class Commande {
     private Utilisateur utilisateur;
     
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Detail_Commande> detailsCommande;
+    private List<DetailCommande> detailsCommande;
      
 
 	public Commande() {
@@ -70,11 +70,11 @@ public class Commande {
 		this.statut = statut;
 	}
 
-	public List<Detail_Commande> getDetailsCommande() {
+	public List<DetailCommande> getDetailsCommande() {
 		return detailsCommande;
 	}
 
-	public void setDetailsCommande(List<Detail_Commande> detailsCommande) {
+	public void setDetailsCommande(List<DetailCommande> detailsCommande) {
 		this.detailsCommande = detailsCommande;
 	}
 	
@@ -88,12 +88,12 @@ public class Commande {
 		this.utilisateur = utilisateur;
 	}
 
-	public void addDetailCommande(Detail_Commande detailCommande) {
+	public void addDetailCommande(DetailCommande detailCommande) {
         detailsCommande.add(detailCommande);
         detailCommande.setCommande(this);
     }
 
-    public void removeDetailCommande(Detail_Commande detailCommande) {
+    public void removeDetailCommande(DetailCommande detailCommande) {
         detailsCommande.remove(detailCommande);
         detailCommande.setCommande(null);
     }

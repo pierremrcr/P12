@@ -13,10 +13,12 @@ private Long id;
 	private TypeMiel typeMiel;
 	private double prix;
 	private int stock;
-    private Producteur producteur;
-    private List<Detail_Commande> detailsCommande;
+    private List<DetailCommande> detailsCommande;
     
-    
+     
+	public Miel() {
+	}
+
 	public Miel(Long id, String nom, String description, double prix) {
 		super();
 		this.id = id;
@@ -61,19 +63,12 @@ private Long id;
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public Producteur getProducteur() {
-		return producteur;
-	}
-	public void setProducteur(Producteur producteur) {
-		this.producteur = producteur;
-	}
-	public List<Detail_Commande> getDetailsCommande() {
+	
+	public List<DetailCommande> getDetailsCommande() {
 		return detailsCommande;
 	}
-	public void setDetailsCommande(List<Detail_Commande> detailsCommande) {
+	public void setDetailsCommande(List<DetailCommande> detailsCommande) {
 		this.detailsCommande = detailsCommande;
-	}
-    
-    
+	}   
 
 }

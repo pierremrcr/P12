@@ -38,7 +38,7 @@ public class Miel {
 	private int stock;
 	
 	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Detail_Commande> detailsCommande;
+    private List<DetailCommande> detailsCommande;
 	
 	
     public Miel() {

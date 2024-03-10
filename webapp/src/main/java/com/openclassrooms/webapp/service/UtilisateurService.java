@@ -13,7 +13,7 @@ public class UtilisateurService {
 	private UtilisateurProxy utilisateurProxy;
 	
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
-        
+        System.out.println(utilisateur.getAdresse().getRue());
 	    Utilisateur savedUtilisateur;
 
 	    if (utilisateur.getId() == null) {
@@ -28,6 +28,22 @@ public class UtilisateurService {
 		Utilisateur utilisateur = utilisateurProxy.login(email, password);
 		return utilisateur;
 	}
+
+	public void deleteUtilisateurById(Long id) {
+        Utilisateur utilisateur = utilisateurProxy.findUtilisateurById(id);
+        if (utilisateur != null) {
+        	utilisateurProxy.deleteUtilisateurById(id);
+        }
+    }
+
+	public Utilisateur getUtilisateurById(Long id) {
+		Utilisateur utilisateur = utilisateurProxy.findUtilisateurById(id);
+		return utilisateur;
+	}
+
+	public void updateUtilisateur(Utilisateur utilisateur) {
+        utilisateurProxy.updateUtilisateur(utilisateur);
+    }
 
 
 }

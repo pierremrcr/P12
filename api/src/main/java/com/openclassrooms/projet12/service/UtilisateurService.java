@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.openclassrooms.projet12.model.Utilisateur;
+import com.openclassrooms.projet12.model.enums.Role;
 import com.openclassrooms.projet12.repository.UtilisateurRepository;
 
 
@@ -33,6 +34,7 @@ public class UtilisateurService {
     }
 
     public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+    	utilisateur.setRole(Role.CLIENT);
     	Utilisateur savedUtilisateur = utilisateurRepository.save(utilisateur);
         return savedUtilisateur;
     }

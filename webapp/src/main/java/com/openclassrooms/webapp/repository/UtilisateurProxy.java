@@ -43,11 +43,9 @@ public class UtilisateurProxy {
 	        if (response.getStatusCode().is2xxSuccessful()) {
 	            return response.getBody();
 	        } else {
-	            // Vous pouvez gérer ici d'autres cas de succès inattendus si nécessaire
 	            return null;
 	        }
 	    } catch (HttpClientErrorException e) {
-	        // Gestion des erreurs client (4xx), par exemple, 401 Unauthorized
 	        if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
 	            System.err.println("Échec de l'authentification : Accès refusé");
 	        } else {
@@ -55,20 +53,14 @@ public class UtilisateurProxy {
 	        }
 	        return null;
 	    } catch (HttpServerErrorException e) {
-	        // Gestion des erreurs serveur (5xx)
 	        System.err.println("Erreur serveur : " + e.getStatusCode());
 	        return null;
 	    } catch (RestClientException e) {
-	        // Gestion des autres erreurs dans les requêtes REST
 	        System.err.println("Erreur lors de la communication avec l'API : " + e.getMessage());
 	        return null;
 	    }
 	}
 
-
-        
-		
-	
 
 	public Utilisateur createUtilisateur(Utilisateur u) {
 		String baseApiUrl = props.getApiUrl();
@@ -83,6 +75,29 @@ public class UtilisateurProxy {
 				Utilisateur.class);
 
 		return response.getBody();
+	}
+	
+	public Utilisateur findUtilisateurById(Long id) {
+	    String baseApiUrl = props.getApiUrl();
+	    String findByIdUrl = baseApiUrl + "/utilisateur/" + id;
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    ResponseEntity<Utilisateur> response = restTemplate.getForEntity(findByIdUrl, Utilisateur.class);
+
+	    return response.getBody();
+	}
+
+
+	public void deleteUtilisateurById(Long id) {
+	    String baseApiUrl = props.getApiUrl();
+	    String deleteUrl = baseApiUrl + "/utilisateur/" + id;
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    restTemplate.exchange(
+	        deleteUrl,
+	        HttpMethod.DELETE,
+	        null,
+	        Void.class); 
 	}
 
 	public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
@@ -141,5 +156,6 @@ public class UtilisateurProxy {
 
 
 	}
+
 
 }

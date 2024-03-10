@@ -1,5 +1,7 @@
 package com.openclassrooms.webapp.model;
 
+import java.util.List;
+
 public class Utilisateur {
 	
     private Long id;
@@ -8,9 +10,10 @@ public class Utilisateur {
 	private String adresseMail;
 	private String motDePasse;
 	private String telephone;
+	private Adresse adresse;
+	private List<Commande> commandes;
 	
 	
-
 	public Utilisateur() {	
 	}
 	
@@ -49,7 +52,24 @@ public class Utilisateur {
 	}	
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
 	}  
 	
 	
+		
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openclassrooms.projet12.model.Commande;
-import com.openclassrooms.projet12.model.Detail_Commande;
+import com.openclassrooms.projet12.model.DetailCommande;
 import com.openclassrooms.projet12.repository.CommandeRepository;
 
 @Service
@@ -23,7 +23,7 @@ public class CommandeService {
     
     @Transactional
     public Commande saveCommande(Commande commande) {
-        for (Detail_Commande detail : commande.getDetailsCommande()) {
+        for (DetailCommande detail : commande.getDetailsCommande()) {
             detail.setCommande(commande);
         }
         return commandeRepository.save(commande);

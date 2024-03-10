@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la commande</title>
+</head>
+<body>
+
+<h2>Détails de la commande</h2>
+<table>
+    <tr>
+        <th>Nom du Miel</th>
+        <th>Quantité</th>
+        <th>Prix Unitaire</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="detail : ${details}">
+        <td th:text="${detail.nom}">Nom du Miel</td>
+        <td th:text="${detail.quantite}">Quantité</td>
+        <td th:text="${#numbers.format(detail.prix, 2)} + ' €'">Prix Unitaire</td>
+        <td th:text="${#numbers.format(detail.total, 2)} + ' €'">Total</td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.openclassrooms.webapp.controller.command;
 
+import com.openclassrooms.webapp.model.Adresse;
+
 public class UtilisateurRegisterForm {
 	
 	    private String adresseMail;
@@ -7,6 +9,7 @@ public class UtilisateurRegisterForm {
 	    private String prenom;;
 	    private String nom;
 	    private String telephone;
+	    private Adresse adresse;
 	   
 
 		public UtilisateurRegisterForm() {
@@ -52,6 +55,15 @@ public class UtilisateurRegisterForm {
 
 		public void setTelephone(String telephone) {
 			this.telephone = telephone;
+		}
+		
+
+		public Adresse getAdresse() {
+			return adresse;
+		}
+
+		public void setAdresse(Adresse adresse) {
+			this.adresse = adresse;
 		}
 
 		@Override

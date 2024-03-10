@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "detail_commande")
-public class Detail_Commande {
+public class DetailCommande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -28,10 +28,10 @@ public class Detail_Commande {
     private int quantite;
 
 
-    public Detail_Commande() {
+    public DetailCommande() {
     }
 
-    public Detail_Commande(Miel miel, Commande commande, int quantite) {
+    public DetailCommande(Miel miel, Commande commande, int quantite) {
         this.miel = miel;
         this.commande = commande;
         this.quantite = quantite;

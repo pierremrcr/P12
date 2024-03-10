@@ -10,37 +10,36 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <a class="navbar-brand" th:href="@{/}">Le comptoir du miel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor02">
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
+            </li>
+            <!-- Menu déroulant pour le compte -->
+            <li class="nav-item dropdown" th:classappend="${session.user != null} ? 'dropdown' : ''">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Mon compte
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/}" th:if="${session.user != null}">Mes commandes</a>
+                    <a class="dropdown-item" th:href="@{/compte}" th:if="${session.user != null}">Mes informations</a>
+                    <a class="dropdown-item" th:href="@{/logout}" th:if="${session.user != null}">Déconnexion</a>
+                    <a class="dropdown-item" th:href="@{/login}" th:if="${session.user == null}">Se connecter</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/contact}">Contactez-nous</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-            <ul class="navbar-nav mr-auto">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Mon panier</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/signup}">Mon compte</a>
-                    </li>
-                                       
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Contactez nous</a>
-                    </li>
-
-            </ul>
-        </div>
-
-    </nav>
 
 </body>
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Connexion et d'Inscription</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+
+ <header>
+<div th:replace="fragments/menu"></div>    
+</header>
+
+
+<body>
+
+    <div class="container mt-5">
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-warning text-white"> 
+                        <h3 class="mb-0">Connexion</h3>
+                    </div>
+
+                    <div class="card-body">
+                        
+                        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                            <p th:text="${errorMessage}">Message d'erreur d'authentification.</p>
+                        </div>
+
+                        <form action="#" th:action="@{/login}" method="post">
+                            <div class="form-group">
+                                <label for="adresseMail">Identifiant Test:</label>
+                                <input type="text" class="form-control" id="adresseMail" name="adresseMail" placeholder="Adresse Mail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="motDePasse">Mot de passe :</label>
+                                <input type="motDePasse" class="form-control" id="motDePasse" name="motDePasse" placeholder="Mot de Passe" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-warning btn-block text-white">Connexion</button>
+                        </form>
+                        <div class="mt-4">
+                            <p>Pas de compte ? <a th:href="@{/signup}" class="btn btn-warning btn-block text-white">Inscrivez-vous</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="fragments/footer"></div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
