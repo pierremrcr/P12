@@ -37,8 +37,9 @@ public class Miel {
 	private double prix;
 	private int stock;
 	
-	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetailCommande> detailsCommande;
+	@ManyToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
 	
 	
     public Miel() {
@@ -93,5 +94,15 @@ public class Miel {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
+	public Commande getCommande() {
+		return commande;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+	
+	
 	
 }

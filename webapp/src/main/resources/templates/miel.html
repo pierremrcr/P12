@@ -9,63 +9,97 @@
 
 
 <header>
-<div th:replace="fragments/menu"></div>    
+    <div th:replace="fragments/menu"></div>    
 </header>
 
 <body>
 
-   <div class="container">
-   
-    	<div>
-           <h1 th:text="${miel.nom}"></h1>
-        </div>
-        
-        <div class="row">
-        
-            <div class="col-md-8 mt-3">
-                <img src="/img/miel/img_miel.jpg" alt="Miel" style="max-width: 300px; max-height: 300px;">
-            </div>
-            
-            <div class="col-md-5">
-            
-                <div class="mt-3">
-                    <p th:text="${miel.description}"></p>
-                </div>
-                
-                <div>
-                    <h4>Prix</h4> 
-                    <p class="text-warning font-weight-bold" th:text="${miel.prix + ' €'}"></p>
-                </div>  
-                
-                <th:block th:if="${session.user != null}">
+ <div class="container">
 
-                 <div class="text-right mb-3">
-                    <button class="btn btn-warning">Ajouter au panier</button>
-                </div>
+   <div>
+     <h1 th:text="${miel.nom}"></h1>
+ </div>
 
-                </th:block>
+ <div class="row">
 
-            </div>
-        </div>
-
-    
+    <div class="col-md-8 mt-3">
+        <img src="/img/miel/img_miel.jpg" alt="Miel" style="max-width: 300px; max-height: 300px;">
     </div>
-    
-   
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
-     <div th:replace="fragments/footer"></div>
+
+    <div class="col-md-5">
+
+        <div class="mt-3">
+            <p th:text="${miel.description}"></p>
+        </div>
+
+        <div>
+            <h4>Prix</h4> 
+            <p class="text-warning font-weight-bold" th:text="${miel.prix + ' €'}"></p>
+        </div>  
+
+        <th:block th:if="${session.user != null}">
+            <form th:action="@{/ajouterMiel/{mielId}(mielId=${miel.id})}" method="post">
+                <div class="form-group">
+                    <label for="quantite">Quantité :</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-secondary btn-minus">-</button>
+                        </div>
+                        <input type="text" id="quantite" name="quantite" value="1" class="form-control text-center" readonly>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-secondary btn-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right mb-3">
+                    <button type="submit" class="btn btn-warning">Ajouter au panier</button>
+                </div>
+            </form>
+        </th:block>
+
+    </div>
+</div>
+
+
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<div th:replace="fragments/footer"></div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelector('.btn-plus').addEventListener('click', function () {
+        var quantiteInput = document.querySelector('#quantite');
+        var currentValue = parseInt(quantiteInput.value, 10);
+        quantiteInput.value = currentValue + 1;
+    });
+
+    document.querySelector('.btn-minus').addEventListener('click', function () {
+        var quantiteInput = document.querySelector('#quantite');
+        var currentValue = parseInt(quantiteInput.value, 10);
+        if (currentValue > 1) {
+            quantiteInput.value = currentValue - 1;
+        }
+    });
+});
+</script>
+
+
 </body>
 </html>
 
 
-        
 
 
-             
-                   
-       
 
-   
 
- 
+
+
+
+
+

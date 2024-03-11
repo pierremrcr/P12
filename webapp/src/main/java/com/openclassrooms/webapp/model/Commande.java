@@ -12,7 +12,7 @@ public class Commande {
     private Date dateCommande;
     private StatutCommande statut;
     private Utilisateur utilisateur;
-    private List<DetailCommande> detailsCommande;
+    private List<Miel> miels;
      
 	public Commande() {
 	}
@@ -41,13 +41,21 @@ public class Commande {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-	public List<DetailCommande> getDetailsCommande() {
-		return detailsCommande;
+	
+	
+	
+	public List<Miel> getMiels() {
+		return miels;
 	}
-	public void setDetailsCommande(List<DetailCommande> detailsCommande) {
-		this.detailsCommande = detailsCommande;
+
+	public void setMiels(List<Miel> miels) {
+		this.miels = miels;
 	}
-    
-    
+
+	public void ajouterMiel(Miel miel) {
+        miels.add(miel);
+        miel.setCommande(this);
+    }
+	
 
 }

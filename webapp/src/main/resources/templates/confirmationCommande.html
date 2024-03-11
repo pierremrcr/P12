@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de votre commande</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> 
+</head>
+
+<header>
+<div th:replace="fragments/menu"></div>    
+</header>
+
+<body>
+    <div class="container mt-5">
+        <h2>Confirmation de votre commande</h2>
+        <div th:if="${!commande.miels.isEmpty()}">
+            <h3>Détails de la commande :</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="miel : ${commande.miels}">
+                        <td th:text="${miel.nom}">Nom du miel</td>
+                        <td th:text="${miel.quantite}">Quantité</td>
+                        <td th:text="${miel.prix} + ' €'">Prix unitaire</td>
+                        <td th:text="${miel.prix * miel.quantite} + ' €'">Total pour cet article</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total de la commande :</td>
+                        <td th:text="${commande.total} + ' €'">Total de la commande</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div th:if="${commande.miels.isEmpty()}">
+            <p>Votre commande est vide.</p>
+        </div>
+        
+        <h4>Merci pour votre commande !</h4>
+        <p>Un email de confirmation a été envoyé à votre adresse.</p>
+
+        <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+
+    <div th:replace="fragments/footer"></div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

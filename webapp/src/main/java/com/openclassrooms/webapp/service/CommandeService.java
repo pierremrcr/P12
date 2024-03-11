@@ -17,4 +17,12 @@ public class CommandeService {
 		  
 	  }
 
+	public Commande saveCommande(Commande commande) {
+		Commande savedCommande;
+		savedCommande = this.commandeProxy.createCommande(commande);
+		return savedCommande;
+	}
+	  
+	  
+
 }

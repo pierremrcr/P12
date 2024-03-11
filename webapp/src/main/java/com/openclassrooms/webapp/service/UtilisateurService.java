@@ -13,7 +13,6 @@ public class UtilisateurService {
 	private UtilisateurProxy utilisateurProxy;
 	
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
-        System.out.println(utilisateur.getAdresse().getRue());
 	    Utilisateur savedUtilisateur;
 
 	    if (utilisateur.getId() == null) {

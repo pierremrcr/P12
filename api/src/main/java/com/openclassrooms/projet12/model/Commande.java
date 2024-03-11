@@ -1,5 +1,6 @@
 package com.openclassrooms.projet12.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +40,8 @@ public class Commande {
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
     
-    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetailCommande> detailsCommande;
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    private List<Miel> miels = new ArrayList<>();
      
 
 	public Commande() {
@@ -69,16 +70,6 @@ public class Commande {
 	public void setStatut(StatutCommande statut) {
 		this.statut = statut;
 	}
-
-	public List<DetailCommande> getDetailsCommande() {
-		return detailsCommande;
-	}
-
-	public void setDetailsCommande(List<DetailCommande> detailsCommande) {
-		this.detailsCommande = detailsCommande;
-	}
-	
-	
 	
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -88,15 +79,17 @@ public class Commande {
 		this.utilisateur = utilisateur;
 	}
 
-	public void addDetailCommande(DetailCommande detailCommande) {
-        detailsCommande.add(detailCommande);
-        detailCommande.setCommande(this);
-    }
+	public List<Miel> getMiels() {
+		return miels;
+	}
 
-    public void removeDetailCommande(DetailCommande detailCommande) {
-        detailsCommande.remove(detailCommande);
-        detailCommande.setCommande(null);
-    }
+	public void setMiels(List<Miel> miels) {
+		this.miels = miels;
+	}
+	
+	
+
+	
     
 	
     

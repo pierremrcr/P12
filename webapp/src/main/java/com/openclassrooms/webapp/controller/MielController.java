@@ -21,7 +21,6 @@ public class MielController {
  
 	 @GetMapping("/miels")
 	 public String getMiels(Model model) {
-		 
 		  Iterable<Miel> listMiel = new ArrayList<Miel>();
 		  listMiel = this.mielService.getMiels();  
 		  model.addAttribute("miels", listMiel);
@@ -30,7 +29,6 @@ public class MielController {
 	
 	 @GetMapping("/miel/{id}")
 	 public String mielDetail(@PathVariable("id") final int id, Model model) {
-		 
 		  Miel miel = this.mielService.getMiel(id);
 		  model.addAttribute("miel", miel);		    
 		  return "miel";	 

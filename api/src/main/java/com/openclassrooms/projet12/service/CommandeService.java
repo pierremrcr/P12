@@ -23,9 +23,6 @@ public class CommandeService {
     
     @Transactional
     public Commande saveCommande(Commande commande) {
-        for (DetailCommande detail : commande.getDetailsCommande()) {
-            detail.setCommande(commande);
-        }
         return commandeRepository.save(commande);
     }
 
@@ -48,7 +45,6 @@ public class CommandeService {
         commande.setDateCommande(commandeDetails.getDateCommande());
         commande.setStatut(commandeDetails.getStatut());
         commande.setUtilisateur(commandeDetails.getUtilisateur());
-        commande.setDetailsCommande(commandeDetails.getDetailsCommande());
         
         return commandeRepository.save(commande);
     }

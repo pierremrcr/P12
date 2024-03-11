@@ -1,19 +1,17 @@
 package com.openclassrooms.webapp.model;
 
-import java.util.List;
-
 import com.openclassrooms.webapp.model.enums.TypeMiel;
 
 public class Miel {
 	
-private Long id;
+	private Long id;
 	
 	private String nom;
 	private String description;
 	private TypeMiel typeMiel;
 	private double prix;
-	private int stock;
-    private List<DetailCommande> detailsCommande;
+	private int quantite;
+	private Commande commande;
     
      
 	public Miel() {
@@ -57,18 +55,24 @@ private Long id;
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	public int getStock() {
-		return stock;
+	
+	public int getQuantite() {
+		return quantite;
 	}
-	public void setStock(int stock) {
-		this.stock = stock;
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	public Commande getCommande() {
+		return commande;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
 	}
 	
-	public List<DetailCommande> getDetailsCommande() {
-		return detailsCommande;
-	}
-	public void setDetailsCommande(List<DetailCommande> detailsCommande) {
-		this.detailsCommande = detailsCommande;
-	}   
-
+	
+	
+	
 }

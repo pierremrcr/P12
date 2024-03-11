@@ -2,6 +2,7 @@ package com.openclassrooms.webapp.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,21 @@ public class CommandeProxy {
 
 		return responseEntity.getBody();
 	}
+
+	 public Commande createCommande(Commande commande) {
+		    String baseApiUrl = props.getApiUrl();
+	        String createCommandeUrl = baseApiUrl + "/commandes";
+
+	        RestTemplate restTemplate = new RestTemplate();
+	        HttpEntity<Commande> request = new HttpEntity<>(commande);
+	        ResponseEntity<Commande> response = restTemplate.exchange(
+	                createCommandeUrl,
+	                HttpMethod.POST,
+	                request,
+	                Commande.class);
+
+	        return response.getBody();
+	    }
 
 
 
