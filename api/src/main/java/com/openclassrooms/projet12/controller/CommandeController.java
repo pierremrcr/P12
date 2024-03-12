@@ -6,13 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.openclassrooms.projet12.model.Commande;
+import com.openclassrooms.projet12.model.Utilisateur;
 import com.openclassrooms.projet12.service.CommandeService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/commandes")
 public class CommandeController {
 
 	@Autowired
@@ -24,10 +24,9 @@ public class CommandeController {
     }
 
     
-    @PostMapping
-    public ResponseEntity<Commande> createCommande(@RequestBody Commande commande) {
-        Commande nouvelleCommande = commandeService.saveCommande(commande);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nouvelleCommande);
+    @PostMapping("/commande")
+    public Commande createCommande(@RequestBody Commande commande) {
+        return commandeService.saveCommande(commande);
     }
 
     
@@ -56,4 +55,17 @@ public class CommandeController {
         commandeService.deleteCommandeById(id);
         return ResponseEntity.ok().build();
     }
+    
+    @GetMapping("/mesCommandes/{id}")
+    public ResponseEntity<List<Commande>> getCommandesUtilisateur(@PathVariable Long id) {
+ 
+        List<Commande> commandesUtilisateur = (List<Commande>) commandeService.findCommandesByUtilisateur(id);
+
+        if (commandesUtilisateur.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(commandesUtilisateur);
+    }
 }
+

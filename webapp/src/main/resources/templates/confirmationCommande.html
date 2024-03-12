@@ -10,7 +10,7 @@
 <div th:replace="fragments/menu"></div>    
 </header>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="container mt-5">
         <h2>Confirmation de votre commande</h2>
         <div th:if="${!commande.miels.isEmpty()}">
@@ -50,7 +50,9 @@
         <a href="/" class="btn btn-primary">Retour à l'accueil</a>
     </div>
 
-    <div th:replace="fragments/footer"></div>
+      <footer class="mt-auto py-3 bg-light">    
+            <div th:replace="fragments/footer"></div>  
+    </footer>
     
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,5 +1,7 @@
 package com.openclassrooms.webapp.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,10 +11,11 @@ public class Commande {
 	
 
 	private Long id;
-    private Date dateCommande;
+    private LocalDateTime dateCommande;
     private StatutCommande statut;
     private Utilisateur utilisateur;
-    private List<Miel> miels;
+    private List<Miel> miels = new ArrayList<>();
+    private double total;
      
 	public Commande() {
 	}
@@ -23,11 +26,11 @@ public class Commande {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getDateCommande() {
+	public LocalDateTime getDateCommande() {
 		return dateCommande;
 	}
-	public void setDateCommande(Date dateCommande) {
-		this.dateCommande = dateCommande;
+	public void setDateCommande(LocalDateTime localDateTime) {
+		this.dateCommande = localDateTime;
 	}
 	public StatutCommande getStatut() {
 		return statut;
@@ -43,7 +46,6 @@ public class Commande {
 	}
 	
 	
-	
 	public List<Miel> getMiels() {
 		return miels;
 	}
@@ -54,8 +56,21 @@ public class Commande {
 
 	public void ajouterMiel(Miel miel) {
         miels.add(miel);
-        miel.setCommande(this);
     }
+
+	public double getTotal() {
+		double total = 0.0;
+        for (Miel miel : miels) {
+            total += miel.getPrix() * miel.getQuantite();
+        }
+        return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	
+	
 	
 
 }

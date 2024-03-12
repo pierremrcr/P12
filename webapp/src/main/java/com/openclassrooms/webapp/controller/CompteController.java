@@ -84,17 +84,10 @@ public class CompteController {
 		
 	}
 
-
-
-	//   @GetMapping("/orders")
-	//   public String viewOrders(Model model) {
-	//      return "orders";
-	//    }
-
 	@PostMapping("/logout")
-	public String logout(SessionStatus sessionStatus) {
-		sessionStatus.setComplete(); 
-		return "redirect:/home"; 
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "home"; 
 
 	}
 

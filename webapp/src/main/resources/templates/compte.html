@@ -15,17 +15,28 @@
 
 <body>
 
+ <div class="container-fluid">
+        <div class="d-flex justify-content-end">
+            <form th:action="@{/logout}" class="pt-3" method="post">
+                <button type="submit" class="btn btn-secondary">Déconnexion</button>
+            </form>
+        </div>
+    </div>
+
 <div class="container mt-4">
     <h2>Gestion du Compte Utilisateur</h2>
 
     <div class="card mb-4">
+    
         <div class="card-header">Modifier les informations de votre compte</div>
+        
         <div class="card-body">
+        
             <form th:action="@{/updateAccount}" th:object="${utilisateur}" method="post">
 
                 <input type="hidden" th:field="*{id}" th:placeholder="*{id}"/>
 
-                  <div class="form-group col-6 col-md-4">
+                  <div class="form-group">
                         <label for="validationNom">Nom</label>
                         <input type="text" class="form-control" id="validationNom"
                                th:field="*{nom}" th:placeholder="*{nom}" required/>
@@ -33,7 +44,7 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
-                    <div class="form-group col-6 col-md-4">
+                    <div class="form-group">
                         <label for="validationPrenom">Prénom</label>
                         <input type="text" class="form-control" id="validationPrenom"
                                th:field="*{prenom}" th:placeholder="*{prenom}" required/>
@@ -41,7 +52,7 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
-                      <div class="form-group col-6 col-md-4">
+                      <div class="form-group">
                         <label for="validationAdresseMail">Adresse Mail</label>
                         <input type="email" class="form-control" id="validationAdresseMail"
                                th:field="*{adresseMail}" th:placeholder="*{adresseMail}" required/>
@@ -49,7 +60,7 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
-                     <div class="form-group col-6 col-md-4">
+                     <div class="form-group">
                         <label for="validationMotDePasse">Mot de passe</label>
                         <input type="password" class="form-control" id="validationMotDePasse"
                                th:field="*{motDePasse}"   required  th:value="secret"/>
@@ -57,7 +68,7 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
-                     <div class="form-group col-6 col-md-4">
+                     <div class="form-group">
                         <label for="validationTelephone">Téléphone</label>
                         <input type="number" class="form-control" id="validationTelephone"
                                th:field="*{telephone}" th:placeholder="*{telephone}"/>
@@ -100,7 +111,7 @@
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
 
-                <button type="submit" class="btn btn-primary">Sauvegarder les changements</button>
+                <button type="submit" class="btn btn-warning btn-block text-white">Sauvegarder les changements</button>
             </form>
         </div>
     </div>
@@ -116,17 +127,6 @@
         </div>
     </div>
 
-   
-    <div class="card mb-4">
-        <div class="card-header">Vos commandes</div>
-        <div class="card-body">
-            <a th:href="@{/commandes}" class="btn btn-info">Accéder à mes commandes</a>
-        </div>
-    </div>
-
-    <form th:action="@{/}" method="post">
-        <button type="submit" class="btn btn-secondary">Déconnexion</button>
-    </form>
 
 </div>
 

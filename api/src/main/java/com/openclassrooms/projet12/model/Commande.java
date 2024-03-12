@@ -1,5 +1,6 @@
 package com.openclassrooms.projet12.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +32,12 @@ public class Commande {
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    private Date dateCommande;
+    private LocalDateTime dateCommande;
 	
 	@Enumerated(EnumType.STRING)
     private StatutCommande statut;
+	
+	private double total;
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
@@ -55,11 +58,11 @@ public class Commande {
 		this.id = id;
 	}
 
-	public Date getDateCommande() {
+	public LocalDateTime getDateCommande() {
 		return dateCommande;
 	}
 
-	public void setDateCommande(Date dateCommande) {
+	public void setDateCommande(LocalDateTime dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
@@ -86,9 +89,14 @@ public class Commande {
 	public void setMiels(List<Miel> miels) {
 		this.miels = miels;
 	}
-	
-	
 
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
 	
     
 	

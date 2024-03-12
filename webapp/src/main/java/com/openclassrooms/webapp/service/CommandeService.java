@@ -1,9 +1,12 @@
 package com.openclassrooms.webapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.webapp.model.Commande;
+import com.openclassrooms.webapp.model.Utilisateur;
 import com.openclassrooms.webapp.repository.CommandeProxy;
 
 @Service
@@ -21,6 +24,10 @@ public class CommandeService {
 		Commande savedCommande;
 		savedCommande = this.commandeProxy.createCommande(commande);
 		return savedCommande;
+	}
+
+	public Iterable<Commande> findCommandesByUtilisateur(Utilisateur utilisateur) {
+		return commandeProxy.findCommandesByUtilisateur(utilisateur);
 	}
 	  
 	  

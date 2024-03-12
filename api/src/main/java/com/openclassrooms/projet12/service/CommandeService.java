@@ -1,5 +1,6 @@
 package com.openclassrooms.projet12.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,18 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openclassrooms.projet12.model.Commande;
-import com.openclassrooms.projet12.model.DetailCommande;
 import com.openclassrooms.projet12.repository.CommandeRepository;
 
 @Service
 public class CommandeService {
 
-    private final CommandeRepository commandeRepository;
-
-    @Autowired
-    public CommandeService(CommandeRepository commandeRepository) {
-        this.commandeRepository = commandeRepository;
-    }
+	@Autowired
+    private CommandeRepository commandeRepository;
 
     
     @Transactional
@@ -56,4 +52,10 @@ public class CommandeService {
                 .orElseThrow(() -> new RuntimeException("Commande not found with id " + id));
         commandeRepository.delete(commande);
     }
+
+
+	public List<Commande> findCommandesByUtilisateur(Long utilisateurId) {
+		return commandeRepository.findByUtilisateurId(utilisateurId);
+	}
+    
 }

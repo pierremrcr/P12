@@ -27,14 +27,14 @@
                     Mon compte
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" th:href="@{/}" th:if="${session.user != null}">Mes commandes</a>
+                    <a class="dropdown-item" th:href="@{/recapitulatifCommande}" th:if="${session.user != null}">Mon panier</a>
                     <a class="dropdown-item" th:href="@{/compte}" th:if="${session.user != null}">Mes informations</a>
                     <a class="dropdown-item" th:href="@{/logout}" th:if="${session.user != null}">Déconnexion</a>
                     <a class="dropdown-item" th:href="@{/login}" th:if="${session.user == null}">Se connecter</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/contact}">Contactez-nous</a>
+                <a class="nav-link" th:href="@{/contactForm}">Contactez-nous</a>
             </li>
         </ul>
     </div>

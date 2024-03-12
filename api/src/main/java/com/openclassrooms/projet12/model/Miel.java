@@ -28,6 +28,8 @@ public class Miel {
 	private Long id;
 	
 	private String nom;
+	
+	@Column(length = 2000) 
 	private String description;
 	
 	@Column(name="type_miel")
