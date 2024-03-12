@@ -1,17 +1,13 @@
 package com.openclassrooms.webapp.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.openclassrooms.webapp.model.Commande;
 import com.openclassrooms.webapp.model.Utilisateur;
 import com.openclassrooms.webapp.service.UtilisateurService;
 
@@ -68,21 +64,21 @@ public class CompteController {
 	}
 	
 	
-	@GetMapping("/commandes")
-    public String Commandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
-		HttpSession session = request.getSession();
-		utilisateur = (Utilisateur) session.getAttribute("user");
-		List<Commande> commandes = utilisateur.getCommandes();
-        model.addAttribute("commmandes", commandes);
-        return "commandes"; 
-    }
-	
-	
-	@GetMapping("/detail-commandes")
-	public String detailCommandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
-		return "detail-commande";
-		
-	}
+//	@GetMapping("/commandes")
+//    public String Commandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
+//		HttpSession session = request.getSession();
+//		utilisateur = (Utilisateur) session.getAttribute("user");
+//		List<Commande> commandes = utilisateur.getCommandes();
+//        model.addAttribute("commmandes", commandes);
+//        return "commandes"; 
+//    }
+//	
+//	
+//	@GetMapping("/detail-commandes")
+//	public String detailCommandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
+//		return "detail-commande";
+//		
+//	}
 
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {

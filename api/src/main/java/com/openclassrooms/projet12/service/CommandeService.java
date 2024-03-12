@@ -1,6 +1,5 @@
 package com.openclassrooms.projet12.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class CommandeService {
     }
 
 
-	public List<Commande> findCommandesByUtilisateur(Long utilisateurId) {
+	public Iterable<Commande> findCommandesByUtilisateur(Long utilisateurId) {
 		return commandeRepository.findByUtilisateurId(utilisateurId);
 	}
     

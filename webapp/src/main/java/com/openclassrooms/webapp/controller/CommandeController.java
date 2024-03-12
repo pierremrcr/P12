@@ -59,13 +59,13 @@ public class CommandeController {
 	public String afficherRecapitulatifCommande(Model model, HttpSession session) {
 		Commande commande = (Commande) model.getAttribute("commande");
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
-	//	Iterable<Commande> commandesPasses = commandeService.findCommandesByUtilisateur(utilisateur);
+	    Iterable<Commande> commandesPasses = commandeService.findCommandesByUtilisateur(utilisateur);
 		if (commande == null) {
 			commande = new Commande(); 
 			commande.setMiels(new ArrayList<>());
 		}
 		
-	//	model.addAttribute("commandes",commandesPasses);
+		model.addAttribute("commandes",commandesPasses);
 		model.addAttribute("commande", commande);
 
 		return "recapitulatifCommande";

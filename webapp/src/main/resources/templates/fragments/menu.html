@@ -21,7 +21,6 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/miels}">Nos Miels</a>
             </li>
-            <!-- Menu déroulant pour le compte -->
             <li class="nav-item dropdown" th:classappend="${session.user != null} ? 'dropdown' : ''">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Mon compte

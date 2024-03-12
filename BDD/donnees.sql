@@ -1,11 +1,3 @@
-INSERT INTO Utilisateur (nom, prenom, adresse_mail, mot_de_passe, adresse_id) VALUES
-('Dupont', 'Jean', 'jean.dupont@email.com', 'motdepasse123', 1),
-('Martin', 'Sophie', 'sophie.martin@email.com', 'password456', 2),
-('Bernard', 'Lucas', 'lucas.bernard@email.com', 'securepass789', 3),
-('Petit', 'Emma', 'emma.petit@email.com', 'mypassword101', 4),
-('Roux', 'Marie', 'marie.roux@email.com', 'passphrase112', 5);
-
-
 INSERT INTO Miel (nom, description, type_miel, prix, stock) VALUES ('Miel de Fleurs Sauvages', 'Ce miel provient d''un mélange riche et varié de nectars de différentes fleurs sauvages, offrant une symphonie de saveurs qui reflète la biodiversité des prairies non cultivées. Chaque cuillère transporte vos sens à travers un champ floral ensoleillé.', 'MIEL_DE_FLEURS_SAUVAGES', 12.00, 25);
 INSERT INTO Miel (nom, description, type_miel, prix, stock) VALUES ('Miel d''Acacia', 'Le miel d''Acacia est apprécié pour sa clarté cristalline et sa douceur subtile. Ce miel léger est parfait pour sucrer vos boissons et plats sans en altérer le goût, conservant ainsi leur authenticité aromatique.', 'MIEL_D_ACACIA', 15.00, 30);
 INSERT INTO Miel (nom, description, type_miel, prix, stock) VALUES ('Miel de Lavande', 'Avec son arôme floral distinctif et ses notes fruitées, le miel de lavande est une invitation à la relaxation. Idéal pour agrémenter des thés ou comme composant de soins de beauté naturels, il transporte les bienfaits apaisants de la lavande.', 'MIEL_DE_LAVANDE', 20.00, 20);
@@ -25,6 +17,13 @@ INSERT INTO ADRESSE (RUE, VILLE, CODE_POSTAL, PAYS) VALUES ('456 avenue du Gén�
 INSERT INTO ADRESSE (RUE, VILLE, CODE_POSTAL, PAYS) VALUES ('789 boulevard des Allies', 'Marseille', '13000', 'France');
 INSERT INTO ADRESSE (RUE, VILLE, CODE_POSTAL, PAYS) VALUES ('101 rue du Bac', 'Bordeaux', '33000', 'France');
 INSERT INTO ADRESSE (RUE, VILLE, CODE_POSTAL, PAYS) VALUES ('202 avenue Jean Jaurès', 'Toulouse', '31000', 'France');
+
+INSERT INTO Utilisateur (nom, prenom, adresse_mail, mot_de_passe, adresse_id) VALUES
+('Dupont', 'Jean', 'jean.dupont@email.com', 'motdepasse123', 1),
+('Martin', 'Sophie', 'sophie.martin@email.com', 'password456', 2),
+('Bernard', 'Lucas', 'lucas.bernard@email.com', 'securepass789', 3),
+('Petit', 'Emma', 'emma.petit@email.com', 'mypassword101', 4),
+('Roux', 'Marie', 'marie.roux@email.com', 'passphrase112', 5);
 
 
 

@@ -16,56 +16,54 @@ import java.util.Optional;
 public class CommandeController {
 
 	@Autowired
-    private final CommandeService commandeService;
+	private final CommandeService commandeService;
 
-    @Autowired
-    public CommandeController(CommandeService commandeService) {
-        this.commandeService = commandeService;
-    }
+	@Autowired
+	public CommandeController(CommandeService commandeService) {
+		this.commandeService = commandeService;
+	}
 
-    
-    @PostMapping("/commande")
-    public Commande createCommande(@RequestBody Commande commande) {
-        return commandeService.saveCommande(commande);
-    }
 
-    
-    @GetMapping
-    public ResponseEntity<List<Commande>> getAllCommandes() {
-        List<Commande> commandes = (List<Commande>) commandeService.findAllCommandes();
-        return ResponseEntity.ok(commandes);
-    }
-    
-    @GetMapping("/{id}")
-    public ResponseEntity<Commande> getCommandeById(@PathVariable Long id) {
-        Optional<Commande> commande = commandeService.findCommandeById(id);
-        return commande.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
+	@PostMapping("/commande")
+	public Commande createCommande(@RequestBody Commande commande) {
+		return commandeService.saveCommande(commande);
+	}
 
-    
-    @PutMapping("/{id}")
-    public ResponseEntity<Commande> updateCommande(@PathVariable Long id, @RequestBody Commande commandeDetails) {
-        Commande miseAJourCommande = commandeService.updateCommande(id, commandeDetails);
-        return ResponseEntity.ok(miseAJourCommande);
-    }
 
-    
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCommande(@PathVariable Long id) {
-        commandeService.deleteCommandeById(id);
-        return ResponseEntity.ok().build();
-    }
-    
-    @GetMapping("/mesCommandes/{id}")
-    public ResponseEntity<List<Commande>> getCommandesUtilisateur(@PathVariable Long id) {
- 
-        List<Commande> commandesUtilisateur = (List<Commande>) commandeService.findCommandesByUtilisateur(id);
+	@GetMapping("/commandes")
+	public Iterable<Commande> getAllCommandes() {
+		return commandeService.findAllCommandes();
 
-        if (commandesUtilisateur.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
+	}
 
-        return ResponseEntity.ok(commandesUtilisateur);
-    }
+	@GetMapping("/commande/{id}")
+	public Commande getCommandeById(@PathVariable("id") Long id) {
+		Optional<Commande> commande = commandeService.findCommandeById(id);
+		if (commande.isPresent()) {
+			return commande.get();
+		} else {
+			return null;
+		}
+	}
+
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Commande> updateCommande(@PathVariable Long id, @RequestBody Commande commandeDetails) {
+		Commande miseAJourCommande = commandeService.updateCommande(id, commandeDetails);
+		return ResponseEntity.ok(miseAJourCommande);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteCommande(@PathVariable Long id) {
+		commandeService.deleteCommandeById(id);
+		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/mesCommandes/{id}")
+	public Iterable<Commande> getCommandesUtilisateur(@PathVariable("id") Long id) {
+		Iterable<Commande> commandesUtilisateur = this.commandeService.findCommandesByUtilisateur(id);
+		return commandesUtilisateur;  
+	}
 }
 

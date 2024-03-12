@@ -2,6 +2,7 @@ package com.openclassrooms.projet12.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.openclassrooms.projet12.model.enums.Role;
 
 import jakarta.persistence.CascadeType;
@@ -43,7 +44,8 @@ public class Utilisateur {
     @JoinColumn(name = "adresse_id", referencedColumnName = "id")
 	private Adresse adresse;
 	
-	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+	@JsonBackReference
     private List<Commande> commandes;
 	
 	
