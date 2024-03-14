@@ -63,22 +63,6 @@ public class CompteController {
 
 	}
 	
-	
-//	@GetMapping("/commandes")
-//    public String Commandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
-//		HttpSession session = request.getSession();
-//		utilisateur = (Utilisateur) session.getAttribute("user");
-//		List<Commande> commandes = utilisateur.getCommandes();
-//        model.addAttribute("commmandes", commandes);
-//        return "commandes"; 
-//    }
-//	
-//	
-//	@GetMapping("/detail-commandes")
-//	public String detailCommandes(HttpServletRequest request,Model model, Utilisateur utilisateur) {
-//		return "detail-commande";
-//		
-//	}
 
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {

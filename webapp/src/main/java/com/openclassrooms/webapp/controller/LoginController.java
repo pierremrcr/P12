@@ -15,6 +15,7 @@ import com.openclassrooms.webapp.model.Adresse;
 import com.openclassrooms.webapp.model.Utilisateur;
 import com.openclassrooms.webapp.service.UtilisateurService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -22,12 +23,12 @@ public class LoginController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
-	
+
 	@GetMapping(value = "/login")
 	public String login(Model model) {
 		return "login";		
 	}
-	
+
 	@PostMapping("/login")
 	public String login(@RequestParam("adresseMail") String email, @RequestParam("motDePasse") String password, HttpSession session, Model model) {
 		Utilisateur utilisateur = utilisateurService.login(email, password);
@@ -36,7 +37,7 @@ public class LoginController {
 			return "home";
 		} else {
 			String errorMessage = "Identifiant ou mot de passe incorrect.";
-            model.addAttribute("errorMessage", errorMessage);
+			model.addAttribute("errorMessage", errorMessage);
 			return "login";
 		}
 	}
@@ -69,8 +70,10 @@ public class LoginController {
 
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout(HttpServletResponse response) {
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+		response.setHeader("Pragma", "no-cache"); 
+		response.setHeader("Expires", "0"); 
 		return "home";
 	}
 
@@ -82,7 +85,7 @@ public class LoginController {
 		utilisateurDto.setAdresseMail(utilisateurRegisterRequest.getAdresseMail());
 		utilisateurDto.setMotDePasse(utilisateurRegisterRequest.getMotDePasse());
 		utilisateurDto.setTelephone(utilisateurRegisterRequest.getTelephone());
-		
+
 		Adresse adresseDto = new Adresse();
 		adresseDto.setRue(utilisateurRegisterRequest.getAdresse().getRue());
 		adresseDto.setVille(utilisateurRegisterRequest.getAdresse().getVille());

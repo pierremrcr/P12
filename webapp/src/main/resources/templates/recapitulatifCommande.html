@@ -59,7 +59,6 @@
         <div th:each="commande : ${commandes}">
             <h3 th:text="'Commande # ' + ${commande.id}"></h3>
            <p th:text="'Date: ' + ${#temporals.format(commande.dateCommande, 'dd-MM-yyyy')}"></p>
-            
             <div th:if="${not #lists.isEmpty(commande.miels)}">
                 <h4>Miels dans cette commande:</h4>
                 <table class="table">

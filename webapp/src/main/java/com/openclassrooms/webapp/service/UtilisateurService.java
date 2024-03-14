@@ -1,6 +1,10 @@
 package com.openclassrooms.webapp.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.webapp.model.Utilisateur;
@@ -12,10 +16,14 @@ public class UtilisateurService {
 	@Autowired
 	private UtilisateurProxy utilisateurProxy;
 	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
 	    Utilisateur savedUtilisateur;
 
 	    if (utilisateur.getId() == null) {
+	    	utilisateur.setMotDePasse(passwordEncoder.encode(utilisateur.getMotDePasse()));
 	        savedUtilisateur = utilisateurProxy.createUtilisateur(utilisateur);
 	    } else {
 	        savedUtilisateur = utilisateurProxy.updateUtilisateur(utilisateur);
@@ -36,6 +44,11 @@ public class UtilisateurService {
     }
 
 	public Utilisateur getUtilisateurById(Long id) {
+		Utilisateur utilisateur = utilisateurProxy.findUtilisateurById(id);
+		return utilisateur;
+	}
+	
+	public Utilisateur loadUser(Long id) {
 		Utilisateur utilisateur = utilisateurProxy.findUtilisateurById(id);
 		return utilisateur;
 	}

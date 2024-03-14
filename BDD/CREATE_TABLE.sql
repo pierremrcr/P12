@@ -23,7 +23,9 @@ CREATE TABLE Miel (
     description VARCHAR(3000),
     type_miel VARCHAR(50),
     prix FLOAT,
-    stock INT  
+    stock INT,
+    commande_id INT,
+    FOREIGN KEY (commande_id) REFERENCES Commande(id)  
 );
 
 CREATE TABLE Commande (
@@ -32,13 +34,4 @@ CREATE TABLE Commande (
     statut VARCHAR(50),
     client_id INT,
     FOREIGN KEY (client_id) REFERENCES Utilisateur(id)
-);
-
-CREATE TABLE Detail_Commande (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    miel_id INT,
-    commande_id INT,
-    quantite INT,
-    FOREIGN KEY (miel_id) REFERENCES Miel(id),
-    FOREIGN KEY (commande_id) REFERENCES Commande(id)
 );
