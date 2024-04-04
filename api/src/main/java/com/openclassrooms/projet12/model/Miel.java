@@ -1,8 +1,11 @@
 package com.openclassrooms.projet12.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.openclassrooms.projet12.model.enums.TypeMiel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,9 +39,8 @@ public class Miel {
 	private double prix;
 	private int stock;
 	
-	@ManyToOne
-    @JoinColumn(name = "commande_id")
-    private Commande commande;
+	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL)
+    private List<DetailCommande> detailCommandes;
 	
 	
     public Miel() {
@@ -93,13 +96,16 @@ public class Miel {
 		this.stock = stock;
 	}
 
-	public Commande getCommande() {
-		return commande;
+
+	public List<DetailCommande> getDetailCommandes() {
+		return detailCommandes;
 	}
 
-	public void setCommande(Commande commande) {
-		this.commande = commande;
+	public void setDetailCommandes(List<DetailCommande> detailCommandes) {
+		this.detailCommandes = detailCommandes;
 	}
+	
+	
 	
 	
 	

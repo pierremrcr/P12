@@ -42,7 +42,7 @@ public class UtilisateurController {
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 		try {
 			Utilisateur utilisateur = utilisateurService.authenticate(loginRequest.getAdresseMail(), loginRequest.getMotDePasse());
-			if (utilisateur != null && verifyPassword(loginRequest.getMotDePasse(), utilisateur.getMotDePasse()))  {
+			if (utilisateur != null)  {
 				return ResponseEntity.ok(utilisateur);
 			} else { 
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Échec de l'authentification");
@@ -101,12 +101,6 @@ public class UtilisateurController {
 		utilisateurService.deleteUtilisateur(id);
 	}
 	
-	public boolean verifyPassword(String motDePasseRequest, String motDePasse) {
-	    if (motDePasseRequest.equals(motDePasse)) {
-	    	return true;
-	    }
-	    return false;
-	}
 	
 	  public static class LoginRequest {
 		    private String adresseMail; 

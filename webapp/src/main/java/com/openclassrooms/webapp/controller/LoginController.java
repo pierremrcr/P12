@@ -1,6 +1,7 @@
 package com.openclassrooms.webapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,11 @@ public class LoginController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 
+	
 	@GetMapping(value = "/login")
 	public String login(Model model) {
 		return "login";		
@@ -32,7 +37,7 @@ public class LoginController {
 	@PostMapping("/login")
 	public String login(@RequestParam("adresseMail") String email, @RequestParam("motDePasse") String password, HttpSession session, Model model) {
 		Utilisateur utilisateur = utilisateurService.login(email, password);
-		if (utilisateur != null) {
+		if (utilisateur != null && verifyPassword(password, utilisateur.getMotDePasse())) {
 			session.setAttribute("user", utilisateur);
 			return "home";
 		} else {
@@ -98,6 +103,10 @@ public class LoginController {
 		return utilisateur;
 
 	}
+	
+	  private boolean verifyPassword(String rawPassword, String encodedPassword) {
+	        return passwordEncoder.matches(rawPassword, encodedPassword);
+	    }
 
 
 

@@ -45,8 +45,8 @@ public class Commande {
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
     
-    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Miel> miels = new ArrayList<>();
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    private List<DetailCommande> detailCommandes;
      
 
 	public Commande() {
@@ -84,13 +84,6 @@ public class Commande {
 		this.utilisateur = utilisateur;
 	}
 
-	public List<Miel> getMiels() {
-		return miels;
-	}
-
-	public void setMiels(List<Miel> miels) {
-		this.miels = miels;
-	}
 
 	public double getTotal() {
 		return total;
@@ -99,6 +92,16 @@ public class Commande {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+
+	public List<DetailCommande> getDetailCommandes() {
+		return detailCommandes;
+	}
+
+	public void setDetailCommandes(List<DetailCommande> detailCommandes) {
+		this.detailCommandes = detailCommandes;
+	}
+	
+	
    
 }
 
