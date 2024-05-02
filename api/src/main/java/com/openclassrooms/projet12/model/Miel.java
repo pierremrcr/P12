@@ -39,7 +39,7 @@ public class Miel {
 	private double prix;
 	private int stock;
 	
-	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "miel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetailCommande> detailCommandes;
 	
 	

@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.openclassrooms.projet12.model.Commande;
+import com.openclassrooms.projet12.model.DetailCommande;
 import com.openclassrooms.projet12.model.Utilisateur;
 import com.openclassrooms.projet12.service.CommandeService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +27,29 @@ public class CommandeController {
 
 
 	@PostMapping("/commande")
-	public Commande createCommande(@RequestBody Commande commande) {
-		return commandeService.saveCommande(commande);
+	public ResponseEntity<String>  createCommande(@RequestBody Commande commande) {
+		try {
+			List<DetailCommande> detailCommandes = new ArrayList<>();
+
+			if (commande.getDetailCommandes() != null) {
+
+				for (DetailCommande detailCommande : commande.getDetailCommandes()) {
+
+					if (detailCommande != null) {
+						detailCommande.setCommande(commande);
+						detailCommandes.add(detailCommande);
+					}
+				}
+			}
+
+			commande.setDetailCommandes(detailCommandes);
+			commandeService.saveCommande(commande);
+
+			return ResponseEntity.ok("Commande crée avec succès !");
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la création de la commande : " + e.getMessage());
+		}
 	}
 
 

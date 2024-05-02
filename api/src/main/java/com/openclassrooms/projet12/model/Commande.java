@@ -94,7 +94,7 @@ public class Commande {
 	}
 
 	public List<DetailCommande> getDetailCommandes() {
-		return detailCommandes;
+		return detailCommandes != null && !detailCommandes.isEmpty() ? detailCommandes : null;
 	}
 
 	public void setDetailCommandes(List<DetailCommande> detailCommandes) {
