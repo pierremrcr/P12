@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.openclassrooms.webapp.model.Commande;
+import com.openclassrooms.webapp.model.DetailCommande;
 import com.openclassrooms.webapp.model.Miel;
 import com.openclassrooms.webapp.model.Utilisateur;
 import com.openclassrooms.webapp.model.enums.StatutCommande;
@@ -42,12 +43,12 @@ public class CommandeController {
 		}
 
 		Miel miel = this.mielService.getMiel(mielId);
-		Miel mielPourCommande = new Miel();
-		mielPourCommande.setNom(miel.getNom());
-		mielPourCommande.setPrix(miel.getPrix());
-		mielPourCommande.setQuantite(quantite);
-
-		commande.ajouterMiel(mielPourCommande);
+		DetailCommande detailCommande = new DetailCommande();
+		detailCommande.setMiel(miel);
+		detailCommande.setQuantite(quantite);
+		detailCommande.setCommande(commande);
+		
+		commande.ajouterDetailCommande(detailCommande);
 		commande.setStatut(StatutCommande.EN_ATTENTE);
 		session.setAttribute("commande",commande);
 		model.addAttribute("commande", commande);
@@ -62,7 +63,7 @@ public class CommandeController {
 	    Iterable<Commande> commandesPasses = commandeService.findCommandesByUtilisateur(utilisateur);
 		if (commande == null) {
 			commande = new Commande(); 
-			commande.setMiels(new ArrayList<>());
+			commande.setDetailCommandes(new ArrayList<>());
 		}
 		
 		model.addAttribute("commandes",commandesPasses);
@@ -81,6 +82,11 @@ public class CommandeController {
 			commande.setDateCommande(LocalDateTime.now()); 
 			commande.setUtilisateur(utilisateur); 
 			commande.setStatut(StatutCommande.EN_COURS);
+			
+			for (DetailCommande detailCommande : commande.getDetailCommandes()) {
+				detailCommande.setCommande(commande);
+			}
+			
 			commandeService.saveCommande(commande);
 			model.addAttribute("commande", commande);
 			redirectAttributes.addFlashAttribute("commande", commande);

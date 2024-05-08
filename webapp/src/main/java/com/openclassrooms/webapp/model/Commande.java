@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.openclassrooms.webapp.model.enums.StatutCommande;
 
 public class Commande {
@@ -14,8 +15,11 @@ public class Commande {
     private LocalDateTime dateCommande;
     private StatutCommande statut;
     private Utilisateur utilisateur;
-    private List<Miel> miels = new ArrayList<>();
     private double total;
+    
+    @JsonManagedReference
+    private List<DetailCommande> detailCommandes = new ArrayList<>();
+    
      
 	public Commande() {
 	}
@@ -44,32 +48,27 @@ public class Commande {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-	
-	
-	public List<Miel> getMiels() {
-		return miels;
-	}
-
-	public void setMiels(List<Miel> miels) {
-		this.miels = miels;
-	}
-
-	public void ajouterMiel(Miel miel) {
-        miels.add(miel);
-    }
 
 	public double getTotal() {
-		double total = 0.0;
-        for (Miel miel : miels) {
-            total += miel.getPrix() * miel.getQuantite();
-        }
-        return total;
+		return total;
 	}
 
 	public void setTotal(double total) {
 		this.total = total;
 	}
+
+	public List<DetailCommande> getDetailCommandes() {
+		return detailCommandes;
+	}
+
+	public void setDetailCommandes(List<DetailCommande> detailCommandes) {
+		this.detailCommandes = detailCommandes;
+	}
 	
+	public void ajouterDetailCommande(DetailCommande detailCommande) {
+		this.detailCommandes.add(detailCommande);
+		detailCommande.setCommande(this);
+	}
 	
 	
 

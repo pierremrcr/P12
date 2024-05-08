@@ -1,18 +1,23 @@
 package com.openclassrooms.projet12.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import com.openclassrooms.projet12.model.Commande;
-import com.openclassrooms.projet12.model.DetailCommande;
-import com.openclassrooms.projet12.model.Utilisateur;
-import com.openclassrooms.projet12.service.CommandeService;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.openclassrooms.projet12.model.Commande;
+import com.openclassrooms.projet12.model.DetailCommande;
+import com.openclassrooms.projet12.service.CommandeService;
 
 @RestController
 public class CommandeController {
@@ -27,7 +32,7 @@ public class CommandeController {
 
 
 	@PostMapping("/commande")
-	public ResponseEntity<String>  createCommande(@RequestBody Commande commande) {
+	public ResponseEntity<String>  creerCommandeAvecDetail(@RequestBody Commande commande) {
 		try {
 			List<DetailCommande> detailCommandes = new ArrayList<>();
 
